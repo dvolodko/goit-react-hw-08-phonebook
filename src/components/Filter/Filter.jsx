@@ -1,8 +1,9 @@
 import React from 'react';
+import { Label, InputField } from './Filter.styled';
 
 export const Filter = ({ onChange }) => (
-  <label>
+  <Label>
     Find contacts by name
-    <input type="text" name="filter" onChange={onChange} />
-  </label>
+    <InputField type="text" name="filter" onChange={onChange} />
+  </Label>
 );

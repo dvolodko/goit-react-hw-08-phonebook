@@ -1,7 +1,11 @@
 import React from 'react';
+import { DeleteButton, ContactItem } from './Contact.styled';
 
-export const Contact = ({ id, name, number }) => (
-  <li key={id}>
+export const Contact = ({ id, name, number, contactRemover }) => (
+  <ContactItem key={id}>
     {name}: {number}
-  </li>
+    <DeleteButton type="button" data-id={id} onClick={contactRemover}>
+      Delete
+    </DeleteButton>
+  </ContactItem>
 );
