@@ -8,6 +8,9 @@ export const ContactItem = styled.li`
 
 export const DeleteButton = styled.button`
   max-width: 120px;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 6px;
   &:hover {
     background-color: #6ee9ff;
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Contact } from 'components/Contact/Contact';
 import { List } from './ContactList.styled';
 
@@ -14,3 +15,8 @@ export const ContactList = ({ contacts, contactRemover }) => (
     ))}
   </List>
 );
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  contactRemover: PropTypes.func.isRequired,
+};
