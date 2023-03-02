@@ -43,8 +43,7 @@ export class App extends Component {
     });
   };
 
-  removeContact = event => {
-    const id = event.currentTarget.dataset.id;
+  removeContact = id => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
@@ -59,9 +58,7 @@ export class App extends Component {
           <h2>Contacts</h2>
           <Filter onChange={this.handleChange} />
           <ContactList
-            contacts={
-              this.state.filter ? this.filteredContacts() : this.state.contacts
-            }
+            contacts={this.filteredContacts()}
             contactRemover={this.removeContact}
           />
         </div>
