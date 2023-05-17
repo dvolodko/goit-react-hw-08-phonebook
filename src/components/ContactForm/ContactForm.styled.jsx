@@ -5,7 +5,8 @@ export const Container = styled.div``;
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  align-items: center;
+  min-width: 400px;
   border: 1px solid black;
   padding: 8px;
 `;
@@ -19,7 +20,7 @@ export const Label = styled.label`
 `;
 
 export const InputField = styled.input`
-  max-width: 200px;
+  width: 360px;
 `;
 
 export const SubmitButton = styled.button`
@@ -27,6 +28,7 @@ export const SubmitButton = styled.button`
   cursor: pointer;
   border: 1px solid black;
   border-radius: 6px;
+  transition: background-color 250ms ease-in-out;
   &:hover {
     background-color: #6ee9ff;
   }

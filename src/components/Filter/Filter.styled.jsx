@@ -9,5 +9,5 @@ export const Label = styled.label`
 `;
 
 export const InputField = styled.input`
-  max-width: 200px;
+  width: 360px;
 `;

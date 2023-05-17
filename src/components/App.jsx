@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
-import { Container } from './App.styled';
+import { Container, ContactsListWrapper } from './App.styled';
 
 export function App() {
   const [contacts, setContacts] = useState([
@@ -65,14 +65,14 @@ export function App() {
     <Container>
       <h1>Phonebook</h1>
       <ContactForm contactsAdder={addContact} />
-      <div>
+      <ContactsListWrapper>
         <h2>Contacts</h2>
         <Filter onChange={handleChange} />
         <ContactList
           contacts={filteredContacts()}
           contactRemover={removeContact}
         />
-      </div>
+      </ContactsListWrapper>
     </Container>
   );
 }
