@@ -1,23 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { getContacts, getSearchQuery } from 'redux/selectors';
 import { Contact } from 'components/Contact/Contact';
 import { List } from './ContactList.styled';
 
-export const ContactList = ({ contacts, contactRemover }) => (
-  <List>
-    {contacts.map(({ id, name, number }) => (
-      <Contact
-        key={id}
-        id={id}
-        name={name}
-        number={number}
-        contactRemover={contactRemover}
-      />
-    ))}
-  </List>
-);
+const getVisibleContacts = (contacts, searchQuery) => {
+  return contacts.filter(contact =>
+    contact.name.toLowerCase().includes(searchQuery.searchQuery.toLowerCase())
+  );
+};
 
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.object).isRequired,
-  contactRemover: PropTypes.func.isRequired,
+export const ContactList = () => {
+  const contacts = useSelector(getContacts);
+  const searchQuery = useSelector(getSearchQuery);
+  const visibleContacts = getVisibleContacts(contacts, searchQuery);
+
+  return (
+    <List>
+      {visibleContacts.map(({ id, name, number }) => (
+        <Contact key={id} id={id} name={name} number={number} />
+      ))}
+    </List>
+  );
 };
