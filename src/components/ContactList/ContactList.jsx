@@ -6,7 +6,7 @@ import { List } from './ContactList.styled';
 
 const getVisibleContacts = (contacts, searchQuery) => {
   return contacts.filter(contact =>
-    contact.name.toLowerCase().includes(searchQuery.searchQuery.toLowerCase())
+    contact.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 };
 
