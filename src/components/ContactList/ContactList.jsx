@@ -2,30 +2,21 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/operations';
 import {
-  getContacts,
-  getIsLoading,
-  getError,
-  getSearchQuery,
+  selectIsLoading,
+  selectError,
+  selectVisibleContacts,
 } from 'redux/selectors';
 import { Contact } from 'components/Contact/Contact';
 import { List } from './ContactList.styled';
 import { ColorRing } from 'react-loader-spinner';
 
-const getVisibleContacts = (contacts, searchQuery) => {
-  return contacts.filter(contact =>
-    contact.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-};
-
 export const ContactList = () => {
   const dispatch = useDispatch();
 
-  const items = useSelector(getContacts);
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
-  const searchQuery = useSelector(getSearchQuery);
-  const visibleContacts = getVisibleContacts(items, searchQuery);
+  const contacts = useSelector(selectVisibleContacts);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -45,8 +36,8 @@ export const ContactList = () => {
         />
       )}
       {error && <p>{error}</p>}
-      {visibleContacts.length > 0 &&
-        visibleContacts.map(({ id, name, phone }) => (
+      {contacts.length > 0 &&
+        contacts.map(({ id, name, phone }) => (
           <Contact key={id} id={id} name={name} phone={phone} />
         ))}
     </List>

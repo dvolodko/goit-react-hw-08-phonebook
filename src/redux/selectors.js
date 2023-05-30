@@ -1,7 +1,16 @@
-export const getContacts = state => state.contacts.items;
+export const selectContacts = state => state.contacts.items;
 
-export const getIsLoading = state => state.contacts.isLoading;
+export const selectIsLoading = state => state.contacts.isLoading;
 
-export const getError = state => state.contacts.error;
+export const selectError = state => state.contacts.error;
 
-export const getSearchQuery = state => state.searchQuery.value;
+export const selectSearchQuery = state => state.searchQuery.value;
+
+export const selectVisibleContacts = state => {
+  const items = selectContacts(state);
+  const searchQuery = selectSearchQuery(state);
+
+  return items.filter(contact =>
+    contact.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+};
