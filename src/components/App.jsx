@@ -1,19 +1,31 @@
-import React from 'react';
-import { ContactForm } from './ContactForm/ContactForm';
-import { Filter } from './Filter/Filter';
-import { ContactList } from './ContactList/ContactList';
-import { Container, ContactsListWrapper } from './App.styled';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router';
+import { SharedLayout } from './SharedLayout/SharedLayout';
+import ContactsView from '../views/ContactsView/ContactsView';
+import HomeView from '../views/HomeView/HomeView';
+import RegisterView from '../views/RegisterView/RegisterView';
+import LoginView from '../views/LoginView/LoginView';
+import { Container } from './App.styled';
+import authOperations from '../redux/auth/authOperations';
 
-export const App = () => {
+export default function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <Container>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <ContactsListWrapper>
-        <h2>Contacts</h2>
-        <Filter />
-        <ContactList />
-      </ContactsListWrapper>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomeView />} />
+          <Route path="/register" element={<RegisterView />} />
+          <Route path="/login" element={<LoginView />} />
+          <Route path="/phonebook" element={<ContactsView />} />
+        </Route>
+      </Routes>
     </Container>
   );
-};
+}
