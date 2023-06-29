@@ -9,14 +9,13 @@ import { ColorRing } from 'react-loader-spinner';
 import { Header, Container } from './SharedLayout.styled';
 
 export const SharedLayout = () => {
-  // const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   return (
     <Container>
       <Header>
         <Navigation />
-        {/* {isLoggedIn ? <UserMenu /> : <AuthNav />} */}
-        <AuthNav />
+        {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </Header>
       <Suspense
         fallback={

@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { authReducer } from './auth/authSlice';
 import { contactsReducer } from './contactsSlice';
 import { searchReducer } from './searchSlice';
 import storage from 'redux-persist/lib/storage';
@@ -14,6 +15,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   contacts: contactsReducer,
   searchQuery: searchReducer,
+  auth: authReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
