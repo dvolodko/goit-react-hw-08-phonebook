@@ -4,7 +4,7 @@ import { deleteContact } from 'redux/operations';
 import PropTypes from 'prop-types';
 import { DeleteButton, ContactItem, ContactIcon } from './Contact.styled';
 
-export const Contact = ({ id, name, phone }) => {
+export const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => dispatch(deleteContact(id));
@@ -12,7 +12,7 @@ export const Contact = ({ id, name, phone }) => {
   return (
     <ContactItem>
       <ContactIcon />
-      {name}: {phone}
+      {name}: {number}
       <DeleteButton type="button" data-id={id} onClick={handleDelete}>
         Delete
       </DeleteButton>
@@ -23,5 +23,5 @@ export const Contact = ({ id, name, phone }) => {
 Contact.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
 };

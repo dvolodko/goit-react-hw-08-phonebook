@@ -9,7 +9,7 @@ import thunk from 'redux-thunk';
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['searchQuery'],
+  whitelist: ['auth'],
 };
 
 const rootReducer = combineReducers({

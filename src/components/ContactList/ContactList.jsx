@@ -37,8 +37,8 @@ export const ContactList = () => {
       )}
       {error && <p>{error}</p>}
       {contacts.length > 0 &&
-        contacts.map(({ id, name, phone }) => (
-          <Contact key={id} id={id} name={name} phone={phone} />
+        contacts.map(({ id, name, number }) => (
+          <Contact key={id} id={id} name={name} number={number} />
         ))}
     </List>
   );

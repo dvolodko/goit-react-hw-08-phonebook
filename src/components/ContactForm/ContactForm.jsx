@@ -19,7 +19,7 @@ export const ContactForm = () => {
     event.preventDefault();
     const form = event.target;
     const name = form.elements.name.value;
-    const phone = form.elements.number.value;
+    const number = form.elements.number.value;
     if (
       contacts.some(
         contact => contact.name.toLowerCase() === name.toLowerCase()
@@ -28,7 +28,7 @@ export const ContactForm = () => {
       alert(`${name} is already in contacts`);
       return;
     }
-    dispatch(addContact({ name, phone }));
+    dispatch(addContact({ name, number }));
     form.reset();
   };
 
