@@ -1,12 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import authSelectors from 'redux/auth/authSelectors';
 import { Link } from './Navigation.styled';
 
-const Navigation = () => (
-  <nav>
-    <Link to="/">Main</Link>
+const Navigation = () => {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
-    <Link to="/phonebook">Phonebook</Link>
-  </nav>
-);
+  return (
+    <nav>
+      <Link to="/">Main</Link>
+
+      {isLoggedIn && <Link to="/phonebook">Phonebook</Link>}
+    </nav>
+  );
+};
 
 export default Navigation;

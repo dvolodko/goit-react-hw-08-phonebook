@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/authSlice';
 import { contactsReducer } from './contactsSlice';
 import { searchReducer } from './searchSlice';
@@ -9,19 +9,15 @@ import thunk from 'redux-thunk';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'],
+  whitelist: ['token'],
 };
 
-const rootReducer = combineReducers({
-  contacts: contactsReducer,
-  searchQuery: searchReducer,
-  auth: authReducer,
-});
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    auth: persistReducer(persistConfig, authReducer),
+    contacts: contactsReducer,
+    searchQuery: searchReducer,
+  },
   middleware: [thunk],
 });
 
